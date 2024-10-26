@@ -1,0 +1,743 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Asset Partners</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #4a4a4a;
+      --secondary-color: #777777;
+      --accent-color: #ff9800;
+      --gradient: linear-gradient(135deg, #4a4a4a, #777777);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    html {
+  scroll-behavior: smooth;
+}
+
+    .navbar {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      padding: 15px 0;
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      padding: 10px 0;
+      background: rgba(255, 255, 255, 0.98);
+    }
+
+    .navbar-brand svg {
+      height: 50px;
+      transition: height 0.3s ease;
+    }
+
+    .nav-link {
+      color: var(--primary-color) !important;
+      font-weight: 500;
+      margin: 0 15px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background: var(--gradient);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .hero-section {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .hero-slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease, transform 8s ease;
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.1);
+      z-index: 1;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+      transform: scale(1);
+      z-index: 2;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+      z-index: 3;
+    }
+
+    .hero-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+      z-index: 4;
+      width: 80%;
+      max-width: 800px;
+    }
+
+    .hero-content h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s forwards;
+    }
+
+    .hero-content p {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s forwards 0.3s;
+    }
+
+    .hero-content a {
+      background: linear-gradient(to bottom right, #000099 0%, #ff00ff 100%);
+      border: transparent;
+    }
+
+    .hero-content a:hover {
+      transform: scale(1.1);
+      transition: all 0.3s ease;
+    }
+
+    .features-section {
+      padding: 100px 0;
+      background: #f8f9fa;
+    }
+
+    .feature-card {
+      padding: 30px;
+      border-radius: 15px;
+      background: white;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      background: var(--gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .feature-icon i {
+      font-size: 30px;
+      color: white;
+    }
+
+    .projects-section {
+      padding: 100px 0;
+    }
+
+    .project-card {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      margin: 15px;
+    }
+
+    .project-image {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .project-card:hover .project-image {
+      transform: scale(1.1);
+    }
+
+    .project-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+      padding: 30px;
+      transform: translateY(100%);
+      transition: transform 0.5s ease;
+      color: whitesmoke
+    }
+
+    .project-card:hover .project-overlay {
+      transform: translateY(0);
+    }
+
+    .stats-section {
+      padding: 80px 0;
+      background: var(--gradient);
+      color: white;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .portfolio {
+      padding: 5rem 2rem;
+      background: #f5f5f5;
+    }
+
+    .portfolio-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-box {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .service-box:hover {
+      transform: translateY(0);
+      
+    }
+
+    .service-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover; 
+      transition: 0.3s ease;
+      transition: transform 0.5s ease;
+      
+    }
+    .service-image:hover {
+      transform: scale(1.1);
+    }
+
+    .service-details {
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .service-details h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .service-details p {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background: var(--light);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+   
+
+
+    .newsletter-section {
+      padding: 80px 0;
+      background: #f8f9fa;
+    }
+
+    .newsletter-form {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .newsletter-input {
+      border-radius: 30px;
+      padding: 15px 25px;
+      border: 2px solid #ddd;
+      transition: all 0.3s ease;
+    }
+
+    .newsletter-input:focus {
+      border-color: var(--secondary-color);
+      box-shadow: 0 0 15px rgba(44, 138, 200, 0.2);
+    }
+
+    .newsletter-button {
+      border-radius: 30px;
+      padding: 15px 40px;
+      background: var(--gradient);
+      border: none;
+      color: white;
+      font-weight: 500;
+      transition: transform 0.3s ease;
+    }
+
+    .newsletter-button:hover {
+      transform: translateY(-3px);
+    }
+
+    .footer {
+      background: var(--gradient);
+      color: white;
+      padding: 70px 0 20px;
+    }
+
+    .footer-heading {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .footer-heading::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 40px;
+      height: 2px;
+      background: var(--accent-color);
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 15px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: white;
+      padding-left: 5px;
+    }
+
+    .footer-social {
+      margin-top: 20px;
+    }
+
+    .footer-social a {
+      display: inline-block;
+      width: 35px;
+      height: 35px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      text-align: center;
+      line-height: 35px;
+      margin-right: 10px;
+      color: white;
+      transition: all 0.3s ease;
+      
+    }
+
+    .footer-social a:hover {
+      background: var(--accent-color);
+      transform: translateY(-3px);
+    }
+
+    .footer-contact li {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-contact i {
+      margin-right: 10px;
+      color: var(--accent-color);
+    }
+
+    .footer-bottom {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-content p {
+        font-size: 1.2rem;
+      }
+
+      .feature-card {
+        margin-bottom: 30px;
+      }
+    }
+    @media (min-width: 992px) {
+      .project-card{
+        margin-left: 30%;
+      }}
+
+
+  
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top ">
+    <div class="justify-content-start" style="margin-left:3% ;">
+
+
+      <a class="navbar-brand" href="#home">
+        <svg preserveAspectRatio="xMidYMid meet" data-bbox="20 50 160 100" viewBox="20 50 160 100" height="43.13"
+          width="43.13" xmlns="http://www.w3.org/2000/svg" data-type="shape" role="presentation" aria-hidden="true"
+          aria-label="">
+          <g>
+            <path d="M61.481 50 20 150h55.308L116.79 50z"></path>
+            <path d="M124.691 50 83.21 150h55.308L180 50z"></path>
+          </g>
+        </svg>
+        <a href="https://brandondtreadwell.wixstudio.io/testeraap" target="_blank" class="h4"
+          style="text-decoration:none" style="margin-bottom:0">
+          Applied Asset Partners
+        </a>
+      </a>
+    </div>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/appliedassetpartners/about%20us/aboutus.html">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/appliedassetpartners/services/service.html">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/appliedassetpartners/contact/contact.html">Contact</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+
+  <section class="hero-section" id="home">
+    <div class="hero-overlay"></div>
+    <div class="hero-slider">
+      <div class="hero-slide active"
+        style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')">
+      </div>
+      <div class="hero-slide"
+        style="background-image: url('https://images.unsplash.com/photo-1554469384-e58fac16e23a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2127&q=80')">
+      </div>
+      <div class="hero-slide"
+        style="background-image: url('https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')">
+      </div>
+    </div>
+    <div class="hero-content">
+      <h1>Discreet Solutions for Extraordinary Assets</h1>
+      <p>Secured Capital  -  Asset Curation  -  Estate Reallocation</p>
+      <a href="/appliedassetpartners/about%20us/aboutus.html" class="btn btn-primary bg btn-lg px-5 py-3">Discover More</a>
+    </div>
+  </section>
+
+  <section class="features-section">
+    <div class="container">
+      <h2 class="text-center mb-5" data-aos="fade-up">Why Choose Us</h2>
+      <div class="row">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h4>Expert Analysis</h4>
+            <p>In-depth market analysis and strategic insights for informed decision-making.</p>
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h4>Secure Investment</h4>
+            <p>Your investments are protected by our robust risk management framework.</p>
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <h4>Trusted Partnership</h4>
+            <p>Building long-term relationships through transparency and reliability.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="projects-section">
+    <div class="container">
+      <div class=" row" >
+        <div class="col-lg-9 " data-aos="fade-up" data-aos-delay="100">
+          <div class="project-card">
+            <img
+              src="https://media.istockphoto.com/id/1418476287/photo/businessman-analyzing-companys-financial-balance-sheet-working-with-digital-augmented-reality.jpg?s=612x612&w=0&k=20&c=Cgdq4iCELzmCVg19Z69GPt0dgNYbN7zbAARkzNSpyno="
+              alt="Investment project" class="project-image">
+            <div class="project-overlay">
+              <h4>At Applied Asset Partners, we provide bespoke asset based services for high-net-worth individuals, families, and private companies.</h4>
+              <p>With a focus on discretion and excellence, we offer tailored solutions to unlock liquidity from your most treasured possessions, whether fine art, luxury goods, or real estate. Applied Asset Partners global network of associates  can efficiently and effectively serve clients worldwide, delivering unparalleled professionalism in every interaction.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-6">
+          <div class="stat-item" data-aos="fade-up">
+            <div class="stat-number " data-count="500">0</div>
+            <div class="stat-label">Projects Completed</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+            <div class="stat-number " data-count="200">0</div>
+            <div class="stat-label">Happy Clients</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+            <div class="stat-number " data-count="15">0</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+            <div class="stat-number " data-count="50">0</div>
+            <div class="stat-label">Team Members</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="portfolio" id="portfolio">
+    <h2 class="section-title" data-aos="fade-up">Our Services</h2>
+    <div class="portfolio-grid">
+      <div class="service-box" data-aos="fade-up" data-aos-delay="100">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqU8cz3UuJAi-UJ7Ck3aX2SspPPLcSJiF35rwEfDPO5hoMyMYNrAb906ZbS3EjZJdtLB4&usqp=CAU" alt="Capital Solutions services"
+          class="service-image">
+        <div class="service-details">
+          <h3>Capital Solutions</h3>
+          <p>At Applied Asset Partners, we provide asset-backed capital solutions tailored to meet your specific liquidity needs. By leveraging luxury assets such as fine art, jewelry,  collectibles, and real estate often credit-focused strategies that provide investors access to unique or bespoke deal flow and sponsors and borrowers access to customized financing packages</p>
+          <a href="/appliedassetpartners/services/service.html" class="service-btn">Learn More</a>
+        </div>
+      </div>
+      <div class="service-box" data-aos="fade-up" data-aos-delay="200">
+        <img src="https://cdn.prod.website-files.com/62cd5ce03261cb3e98188470/62cd5ce03261cb9b5b1886ac_JliyIojIYkI2auGoC65xQJOslpnC7054G-choEijYIw1-7uPva5j4bLFFTjuy2OctCLOjlwAOFM7ffXuXANY4QPbQF3lE8Opv0s5fhTtrg-YNmEsOKh41CaUbJurKwDgPC5OrOt7.jpeg" alt="Asset Curation services"
+          class="service-image">
+        <div class="service-details">
+          <h3>Asset Curation</h3>
+          <p>Curating and showcasing luxury assets such as fine art, historical artifacts, or rare collectibles requires a meticulous and thoughtful approach. Our asset curation services are tailored for high-profile events, museum exhibitions, and exclusive private viewings, ensuring that each piece is handled with the utmost care and presented to enhance its prestige and value.</p>
+          <a href="/appliedassetpartners/services/service.html" class="service-btn">Learn More</a>
+        </div>
+      </div>
+      <div class="service-box" data-aos="fade-up" data-aos-delay="300">
+        <img src="https://www.khanestate.com.pk/wp-content/uploads/2022/11/Luxury-Home.jpeg" alt="Estate Asset Reallocation services"
+          class="service-image">
+        <div class="service-details">
+          <h3>Estate Asset Reallocation</h3>
+          <p>Applied Asset Partners provides estate asset reallocation services to support families, trustees, and  individuals in managing and restructuring complex asset portfolios. Whether due to inheritance, downsizing, or the desire to realign your estate’s holdings, we offer a thorough, professional approach to ensure optimal asset management.</p>
+          <a href="/appliedassetpartners/services/service.html" class="service-btn">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="text-center" data-aos="fade-up">
+        <h2>Stay Updated</h2>
+        <p class="mb-4">Subscribe to our newsletter for the latest insights and updates</p>
+        <form class="newsletter-form">
+          <div class="input-group">
+            <input type="email" class="form-control newsletter-input" placeholder="Enter your email">
+            <button class="btn newsletter-button">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+          <h3 class="footer-heading">About Us</h3>
+          <p class="pe-4">Applied Asset Partners is a leading financial management firm dedicated to providing exceptional
+            investment solutions and strategic partnerships to our valued clients worldwide.</p>
+        </div>
+        <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+          <h3 class="footer-heading">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="/appliedassetpartners/about%20us/aboutus.html">About Us</a></li>
+            <li><a href="/appliedassetpartners/services/service.html">Our Services</a></li>
+            <li><a href="/appliedassetpartners/contact/contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+          <h3 class="footer-heading">Services</h3>
+          <ul class="footer-links">
+            <li><a href="/appliedassetpartners/services/service.html">Capital Solutions</a></li>
+            <li><a href="/appliedassetpartners/services/service.html">Asset Curation</a></li>
+            <li><a href="/appliedassetpartners/services/service.html">museum curators</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h3 class="footer-heading">Contact Info</h3>
+          <ul class="footer-links footer-contact">
+           
+            <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+            <li><i class="fas fa-envelope"></i> info@allassetpartners.com</li>
+            <li><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 6:00 PM</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 All Asset Partners. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 50) {
+        document.querySelector('.navbar').classList.add('scrolled');
+      } else {
+        document.querySelector('.navbar').classList.remove('scrolled');
+      }
+    });
+
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.hero-slide');
+
+    function rotateSlides() {
+      slides.forEach(slide => slide.classList.remove('active'));
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }
+
+    slides[0].classList.add('active');
+    setInterval(rotateSlides, 5000);
+
+    function animateCounter(element) {
+      const target = parseInt(element.getAttribute('data-count'));
+      let count = 0;
+      const duration = 2000;
+      const increment = target / (duration / 16);
+
+      const timer = setInterval(() => {
+        count += increment;
+        if (count >= target) {
+          element.textContent = target;
+          clearInterval(timer);
+        } else {
+          element.textContent = Math.floor(count);
+        }
+      }, 16);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.stat-number').forEach(counter => {
+            animateCounter(counter);
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    });
+
+    document.querySelector('.stats-section').querySelectorAll('.stat-item').forEach(item => {
+      observer.observe(item);
+    });
+  </script>
+</body>
+
+</html>

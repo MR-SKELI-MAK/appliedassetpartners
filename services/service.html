@@ -1,0 +1,571 @@
+<html><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Asset Partners - Professional Services</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<style>
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #34495e;
+  --accent-color: #3498db;
+  --gradient: linear-gradient(135deg, #2c3e50, #3498db);
+}
+html {
+  scroll-behavior: smooth;
+}
+.navbar {
+      background: rgba(255, 255, 255, 0.884);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      padding: 15px 0;
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      padding: 10px 0;
+      background: rgba(255, 255, 255, 0);
+    }
+
+    .navbar-brand svg {
+      height: 50px;
+      transition: height 0.3s ease;
+    }
+
+    .nav-link {
+      color: var(--primary-color) !important;
+      font-weight: 500;
+      margin: 0 15px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background: var(--gradient);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+.hero-section {
+  position: relative;
+  height: 100%;
+  background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3') center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+@media (max-width: 768px) {
+    
+    .hero-content{
+        margin-top:20%;
+       
+    }
+  }
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.service-category {
+  padding: 100px 0;
+  background: #f8f9fa;
+}
+
+/* New Modern Card Design */
+.service-card {
+  position: relative;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  transition: all 0.4s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+}
+
+.service-image-container {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.service-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.service-card:hover .service-image {
+  transform: scale(1.1);
+}
+
+.service-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.6));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.service-card:hover .service-overlay {
+  opacity: 1;
+}
+
+.service-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255,255,255,0.95);
+  color: var(--primary-color);
+  padding: 8px 15px;
+  border-radius: 25px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  z-index: 2;
+}
+
+.service-content {
+  padding: 30px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-icon {
+  width: 60px;
+  height: 60px;
+  background: var(--gradient);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+  transform: rotate(0deg);
+}
+
+.service-icon i {
+  font-size: 24px;
+  color: white;
+  transform: rotate(-45deg);
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-icon i {
+  transform: rotate(0deg);
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.feature-list li {
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.feature-list li i {
+  color: var(--accent-color);
+  margin-right: 12px;
+  font-size: 14px;
+}
+
+.service-btn {
+  margin-top: auto;
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 10px 25px;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  text-align: center;
+}
+
+.service-btn:hover {
+  background: var(--gradient);
+  color: white;
+  border-color: transparent;
+}
+
+.cta-section {
+  padding: 100px 0;
+  background: #fff;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: 50vh;
+  }
+  
+  .service-category {
+    padding: 50px 0;
+  }
+  
+  .service-image-container {
+    height: 180px;
+  }
+}.footer {
+      background: var(--gradient);
+      color: white;
+      padding: 70px 0 20px;
+    }
+
+    .footer-heading {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .footer-heading::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 40px;
+      height: 2px;
+      background: var(--accent-color);
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 15px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: white;
+      padding-left: 5px;
+    }
+
+    .footer-social {
+      margin-top: 20px;
+    }
+
+    .footer-social a {
+      display: inline-block;
+      width: 35px;
+      height: 35px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      text-align: center;
+      line-height: 35px;
+      margin-right: 10px;
+      color: white;
+      transition: all 0.3s ease;
+      
+    }
+
+    .footer-social a:hover {
+      background: var(--accent-color);
+      transform: translateY(-3px);
+    }
+
+    .footer-contact li {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-contact i {
+      margin-right: 10px;
+      color: var(--accent-color);
+    }
+
+    .footer-bottom {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+
+</style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top ">
+    <div class="justify-content-start" style="margin-left:3% ;">
+
+
+      <a class="navbar-brand" href="#home">
+        <svg preserveAspectRatio="xMidYMid meet" data-bbox="20 50 160 100" viewBox="20 50 160 100" height="43.13"
+          width="43.13" xmlns="http://www.w3.org/2000/svg" data-type="shape" role="presentation" aria-hidden="true"
+          aria-label="">
+          <g>
+            <path d="M61.481 50 20 150h55.308L116.79 50z"></path>
+            <path d="M124.691 50 83.21 150h55.308L180 50z"></path>
+          </g>
+        </svg>
+        <a href="" target="_blank" class="h4"
+          style="text-decoration:none" style="margin-bottom:0">
+          Applied Asset Partners
+        </a>
+      </a>
+    </div>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/appliedassetpartners/index.html#home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/appliedassetpartners/about%20us/aboutus.html">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/appliedassetpartners/services/service.html">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/appliedassetpartners/contact/contact.html">Contact</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100">
+      At Applied Asset Partners, we recognize that your assets are more than just valuables—they are the embodiment of your legacy. Our bespoke services are designed to meet the specific needs of clients, offering discreet and efficient solutions that allow you to leverage your assets while maintaining complete privacy and control.
+    </p>
+    
+  </div>
+</section>
+
+<!-- Main Services Section -->
+<section id="services" class="service-category">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-8 mx-auto text-center">
+        <h2 class="mb-3">Our Core Services</h2>
+        <p class="lead text-muted">
+          Discover our range of professional financial services designed to help you achieve your goals
+        </p>
+      </div>
+    </div>
+    
+    <div class="row g-4">
+      <!-- Wealth Management -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up">
+        <div class="service-card">
+          <div class="service-image-container">
+            <img src="https://hospitalityinsights.ehl.edu/hubfs/Luxury-market-and-cultural-diversity.jpg" alt="Capital Solutions" class="service-image">
+            <div class="service-overlay"></div>
+           
+          </div>
+          <div class="service-content">
+            <div class="service-icon">
+              <i class="fas fa-chart-pie"></i>
+            </div>
+            <h3 class="h4 mb-3">Capital Solutions</h3>
+            <p>At Applied Asset Partners, we provide asset-backed capital solutions tailored to meet your specific liquidity needs. By leveraging luxury assets such as fine art, jewelry,  collectibles, and real estate.
+
+              AAP allows you to unlock the value of your prized assets while maintaining ownership. Whether you require funds for business ventures, investments, or personal needs, our team ensures a seamless, efficient process that prioritizes your privacy and confidentiality.
+              
+              Each arrangement is customized to your circumstances, providing liquidity while safeguarding your long-term interests. Our expertise in managing high-value assets ensures that every transaction is handled with the highest level of professionalism and discretion, delivering the financial flexibility you need without compromising control over your assets.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Investment Advisory -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="service-card">
+          <div class="service-image-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfy628omEC8JC3zkPZ3BCnzRPrVJH0KorJ4g&s" alt="Asset Curation" class="service-image">
+            <div class="service-overlay"></div>
+           
+          </div>
+          <div class="service-content">
+            <div class="service-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3 class="h4 mb-3">Asset Curation</h3>
+            <p>Curating and showcasing luxury assets such as fine art, historical artifacts, or rare collectibles requires a meticulous and thoughtful approach. Our asset curation services are tailored for high-profile events, museum exhibitions, and exclusive private viewings, ensuring that each piece is handled with the utmost care and presented to enhance its prestige and value.Asset curation is the process of organizing, managing, and assembling a collection of data assets. The goal of asset curation is to make data assets easier to find, provide information about their structure and semantics, and capture any modifications or enhancements made to them. 
+              Here are some steps involved in asset curation: Create data assets, Assign metadata, Publish assets to a catalog, and Update metadata. 
+              Asset curation can be done manually or automatically.</p>
+           
+          </div>
+        </div>
+      </div>
+      
+
+      <!-- Corporate Finance -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="service-card">
+          <div class="service-image-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWJ2G0sOlIVWcfg3CKlkFwpXY2NIfz2Ob8pQ&s" alt="Museum curators" class="service-image">
+            <div class="service-overlay"></div>
+            
+          </div>
+          <div class="service-content">
+            <div class="service-icon">
+              <i class="fas fa-building"></i>
+            </div>
+            <h3 class="h4 mb-3"> Museum curators</h3>
+            <p>We collaborate closely with event planners, museum curators, and private collectors to design and execute exhibitions that highlight the distinct qualities of each asset. Beyond curating the displays, we offer comprehensive logistical support, including transportation, secure storage, and full-spectrum security for high-value items. Our commitment to security, privacy, and the safety of physical assets is paramount, providing our clients with peace of mind knowing their valuables are protected at every stage.
+
+              Whether for temporary exhibitions, private events, or permanent collections, our team ensures that your luxury assets are preserved, presented, and safeguarded to the highest industry standards. With deep expertise in the art and collectibles markets, we offer strategic advice to ensure your assets are showcased in ways that elevate both their cultural and financial significance.</p>
+           
+          </div>
+        </div>
+      </div>
+      <!-- .......... -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="service-card">
+          <div class="service-image-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/The_World_Bank_Group_%2853844804648%29.jpg/640px-The_World_Bank_Group_%2853844804648%29.jpg" alt="Estate Asset Reallocation" class="service-image">
+            <div class="service-overlay"></div>
+           
+          </div>
+          <div class="service-content">
+            <div class="service-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3 class="h4 mb-3">Estate Asset Reallocation</h3>
+            <p>Applied Asset Partners provides estate asset reorganization services to support families, trustees, and  individuals in managing and restructuring complex asset portfolios. Whether due to inheritance, downsizing, or the desire to realign your estate’s holdings, we offer a thorough, professional approach to ensure optimal asset management.
+
+              Our team assists in identifying underperforming or illiquid assets and recommends strategies for maximizing liquidity, tax efficiency, and long-term asset growth. This service is particularly valuable for clients who are undergoing significant life transitions, such as estate transfers, family business restructurings, or the passing of a loved one.
+              
+              We work discreetly to help you navigate the often-complex financial and legal landscape, ensuring your estate remains organized, efficient, and reflective of your legacy goals. Whether you need assistance with asset consolidation, valuation, or the preparation of assets for sale or loan, we act as trusted advisors, protecting your wealth and legacy for future generations.</p>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto text-center">
+        <h2 class="mb-4">Ready to Get Started?</h2>
+        <p class="lead mb-4">Let's discuss how we can help you achieve your financial goals</p>
+        <a href="/appliedassetpartners/contact/contact.html" class="btn btn-primary btn-lg">Schedule a Consultation</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+        <h3 class="footer-heading">About Us</h3>
+        <p class="pe-4">Applied Asset Partners is a leading financial management firm dedicated to providing exceptional
+          investment solutions and strategic partnerships to our valued clients worldwide.</p>
+      </div>
+      <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+        <h3 class="footer-heading">Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="/appliedassetpartners/about%20us/aboutus.html">About Us</a></li>
+          <li><a href="/appliedassetpartners/services/service.html">Our Services</a></li>
+          <li><a href="/appliedassetpartners/contact/contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+        <h3 class="footer-heading">Services</h3>
+        <ul class="footer-links">
+          <li><a href="/appliedassetpartners/services/service.html">Capital Solutions</a></li>
+          <li><a href="/appliedassetpartners/services/service.html">Asset Curation</a></li>
+          <li><a href="/appliedassetpartners/services/service.html">museum curators</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <h3 class="footer-heading">Contact Info</h3>
+        <ul class="footer-links footer-contact">
+         
+          <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+          <li><i class="fas fa-envelope"></i> info@allassetpartners.com</li>
+          <li><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 6:00 PM</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2023 All Asset Partners. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({
+  duration: 1000,
+  once: true
+});
+</script>
+</body>
+</html>
